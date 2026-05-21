@@ -1,0 +1,55 @@
+@use './tokens' as *;
+
+.product-card {
+  width: 280px;
+  padding: $tractor-spacing-md;
+  border: 1px solid $tractor-color-border;
+  border-radius: $tractor-radius-lg;
+  background-color: $tractor-color-surface;
+  font-family: $tractor-font-family-base;
+
+  &__image {
+    width: 100%;
+    border-radius: $tractor-radius-md;
+  }
+
+  &__content {
+    margin-top: $tractor-spacing-md;
+  }
+
+  &__title {
+    margin: 0;
+    color: $tractor-color-text;
+    font-size: 1.125rem;
+  }
+
+  &__brand {
+    margin-top: $tractor-spacing-xs;
+    color: $tractor-color-muted;
+    font-size: 0.875rem;
+  }
+
+  &__price {
+    margin-top: $tractor-spacing-sm;
+    color: $tractor-color-primary-dark;
+    font-weight: 700;
+  }
+
+  &__actions {
+    margin-top: $tractor-spacing-md;
+  }
+
+  &__button {
+    width: 100%;
+    padding: $tractor-spacing-sm $tractor-spacing-md;
+    border: none;
+    border-radius: $tractor-radius-md;
+    background-color: $tractor-color-primary;
+    color: $tractor-color-surface;
+    cursor: pointer;
+  }
+
+  &--featured {
+    border-color: $tractor-color-primary;
+  }
+}

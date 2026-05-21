@@ -1,0 +1,23 @@
+{
+  "name": "tractor-store-frontend-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "example:product": "tsx playground/examples/product-result.example.ts",
+    "example:catalog": "tsx playground/examples/catalog-record.example.ts",
+    "example:cart-events": "tsx playground/examples/cart-events.example.ts",
+    "styles:build": "sass playground/styles/product-card.scss playground/public/product-card.css",
+    "styles:watch": "sass --watch playground/styles/product-card.scss playground/public/product-card.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "sass": "^1.99.0",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
+  }
+}
