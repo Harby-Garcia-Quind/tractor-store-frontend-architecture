@@ -4,7 +4,10 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/shell/src",
-  "tags": [],
+  "tags": [
+    "type:app",
+    "scope:shell"
+  ],
   "targets": {
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

@@ -17,8 +17,34 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
+              sourceTag: 'scope:shell',
+              onlyDependOnLibsWithTags: [
+                'scope:explore',
+                'scope:decide',
+                'scope:checkout',
+                'scope:shared',
+                'scope:design-system',
+              ],
+            },
+            {
+              sourceTag: 'scope:explore',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:design-system'],
+            },
+            {
+              sourceTag: 'scope:decide',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:design-system'],
+            },
+            {
+              sourceTag: 'scope:checkout',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:design-system'],
+            },
+            {
+              sourceTag: 'scope:design-system',
+              onlyDependOnLibsWithTags: ['scope:shared'],
+            },
+            {
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
             },
           ],
         },

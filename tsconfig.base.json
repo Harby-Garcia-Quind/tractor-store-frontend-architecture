@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "experimentalDecorators": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tractor/domain": ["packages/playground/domain.models.ts"],
+      "@tractor/domain/*": ["packages/playground/domain/*"],
+      "shared-catalog": ["packages/shared-catalog/src/index.ts"],
+      "ts-design-system": ["packages/ts-design-system/src/index.ts"]
+    }
+  }
+}

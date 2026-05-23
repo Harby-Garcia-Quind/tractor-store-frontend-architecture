@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "packages/mfe-decide/src",
-  "tags": [],
+  "tags": ["type:mfe", "scope:decide"],
   "targets": {
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

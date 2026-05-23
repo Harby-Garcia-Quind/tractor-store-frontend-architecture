@@ -31,11 +31,41 @@
       }
     }
   ],
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/**/*.test.ts",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/src/test-setup.ts"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/pnpm-lock.yaml",
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/eslint.config.mjs"
+    ]
+  },
   "targetDefaults": {
-    "@angular-devkit/build-angular:browser": {
+    "build": {
       "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
+      "inputs": ["production", "^production"]
+    },
+    "test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
+    },
+    "lint": {
+      "cache": true,
+      "inputs": ["default", "{workspaceRoot}/eslint.config.mjs"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {
@@ -44,6 +74,13 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "scss"
     }
   }
 }
