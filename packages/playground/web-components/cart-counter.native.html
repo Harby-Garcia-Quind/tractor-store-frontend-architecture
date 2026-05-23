@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Native Custom Element - Cart Counter</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+      }
+
+      ts-cart-counter {
+        --cart-counter-bg: #2f6f3e;
+        --cart-counter-color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Native Custom Element</h1>
+
+    <ts-cart-counter count="3"></ts-cart-counter>
+
+    <script>
+      class TsCartCounter extends HTMLElement {
+        static get observedAttributes() {
+          return ['count'];
+        }
+
+        constructor() {
+          super();
+
+          console.log('constructor');
+
+          this.attachShadow({ mode: 'open' });
+        }
+
+        connectedCallback() {
+          console.log('connectedCallback');
+          this.render();
+        }
+
+        disconnectedCallback() {
+          console.log('disconnectedCallback');
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+          console.log('attributeChangedCallback', {
+            name,
+            oldValue,
+            newValue,
+          });
+
+          if (oldValue !== newValue) {
+            this.render();
+          }
+        }
+
+        get count() {
+          return Number(this.getAttribute('count') ?? 0);
+        }
+
+        set count(value) {
+          this.setAttribute('count', String(value));
+        }
+
+        render() {
+          if (!this.shadowRoot) return;
+
+          this.shadowRoot.innerHTML = `
+            <style>
+              button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 0.75rem;
+                border: none;
+                border-radius: 999px;
+                background: var(--cart-counter-bg, black);
+                color: var(--cart-counter-color, white);
+                cursor: pointer;
+                font-size: 1rem;
+              }
+            </style>
+
+            <button type="button">
+              🛒
+              <span>${this.count}</span>
+            </button>
+          `;
+
+          const button = this.shadowRoot.querySelector('button');
+
+          button.addEventListener('click', () => {
+            this.dispatchEvent(
+              new CustomEvent('cart-counter:clicked', {
+                detail: {
+                  count: this.count,
+                },
+                bubbles: true,
+                composed: true,
+              })
+            );
+          });
+        }
+      }
+
+      customElements.define('ts-cart-counter', TsCartCounter);
+
+      document.addEventListener('cart-counter:clicked', (event) => {
+        console.log('Cart counter clicked:', event.detail);
+      });
+    </script>
+  </body>
+</html>

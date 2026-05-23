@@ -4,19 +4,23 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "experimentalDecorators": true,
-
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-
+    "baseUrl": ".",
     "paths": {
-      "@tractor/domain": ["./playground/domain.models.ts"],
-      "@tractor/domain/*": ["./playground/domain/*"]
+      "@tractor/domain": [
+        "packages/playground/domain.models.ts"
+      ],
+      "@tractor/domain/*": [
+        "packages/playground/domain/*"
+      ]
     }
   },
-  "include": ["playground/**/*.ts"]
+  "include": [
+    "packages/playground/**/*.ts"
+  ]
 }
