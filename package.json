@@ -6,7 +6,12 @@
     "shell": "nx serve shell",
     "mfe-explore": "nx serve mfe-explore",
     "mfe-decide": "nx serve mfe-decide",
-    "mfe-checkout": "nx serve mfe-checkout"
+    "mfe-checkout": "nx serve mfe-checkout",
+    "start-all": "nx run-many --target=serve --projects=shell,mfe-explore,mfe-decide,mfe-checkout --parallel=4",
+    "lint:all": "nx run-many -t lint --all",
+    "test:all": "nx run-many -t test --all",
+    "build:all": "nx run-many -t build --all",
+    "graph": "nx graph"
   },
   "author": "",
   "license": "ISC",
