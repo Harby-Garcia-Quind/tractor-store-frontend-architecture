@@ -1,0 +1,98 @@
+<main class="min-h-screen bg-app-bg text-app-text font-sans">
+  <section class="mx-auto max-w-2xl px-page py-section">
+    <h1 class="mb-6 text-3xl font-bold text-app-text">Checkout</h1>
+
+    <form
+      class="rounded-card border border-app-border bg-app-surface p-section shadow-card"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="flex flex-col gap-6">
+
+        <!-- Full Name -->
+        <div class="checkout-field">
+          <label class="checkout-field__label" for="fullName">Full Name</label>
+          <input
+            class="checkout-field__input"
+            id="fullName"
+            type="text"
+            formControlName="fullName"
+            autocomplete="name"
+          />
+          @if (form.controls.fullName.invalid && form.controls.fullName.touched) {
+            <p class="checkout-field__error">Full name is required.</p>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="checkout-field">
+          <label class="checkout-field__label" for="email">Email</label>
+          <input
+            class="checkout-field__input"
+            id="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+          />
+          @if (form.controls.email.invalid && form.controls.email.touched) {
+            @if (form.controls.email.errors?.['required']) {
+              <p class="checkout-field__error">Email is required.</p>
+            } @else {
+              <p class="checkout-field__error">Enter a valid email address.</p>
+            }
+          }
+        </div>
+
+        <!-- Address -->
+        <div class="checkout-field">
+          <label class="checkout-field__label" for="address">Address</label>
+          <input
+            class="checkout-field__input"
+            id="address"
+            type="text"
+            formControlName="address"
+            autocomplete="street-address"
+          />
+          @if (form.controls.address.invalid && form.controls.address.touched) {
+            <p class="checkout-field__error">Address is required.</p>
+          }
+        </div>
+
+        <!-- City -->
+        <div class="checkout-field">
+          <label class="checkout-field__label" for="city">City</label>
+          <input
+            class="checkout-field__input"
+            id="city"
+            type="text"
+            formControlName="city"
+            autocomplete="address-level2"
+          />
+          @if (form.controls.city.invalid && form.controls.city.touched) {
+            <p class="checkout-field__error">City is required.</p>
+          }
+        </div>
+
+        <!-- Country -->
+        <div class="checkout-field">
+          <label class="checkout-field__label" for="country">Country</label>
+          <input
+            class="checkout-field__input"
+            id="country"
+            type="text"
+            formControlName="country"
+            autocomplete="country-name"
+          />
+          @if (form.controls.country.invalid && form.controls.country.touched) {
+            <p class="checkout-field__error">Country is required.</p>
+          }
+        </div>
+
+      </div>
+
+      <div class="mt-8">
+        <ts-button [type]="'submit'">Place order</ts-button>
+      </div>
+    </form>
+  </section>
+</main>

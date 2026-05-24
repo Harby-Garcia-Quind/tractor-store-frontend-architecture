@@ -11,6 +11,7 @@ module.exports = {
           text: 'var(--color-text)',
           muted: 'var(--color-muted)',
           border: 'var(--color-border)',
+          error: 'var(--color-error)',
         },
       },
       fontFamily: {

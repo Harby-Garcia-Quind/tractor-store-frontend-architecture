@@ -8,6 +8,7 @@
   --color-text: var(--palette-neutral-900);
   --color-muted: var(--palette-neutral-600);
   --color-border: var(--palette-neutral-300);
+  --color-error: var(--palette-orange-500);
 
   --font-body: var(--font-family-sans);
 
