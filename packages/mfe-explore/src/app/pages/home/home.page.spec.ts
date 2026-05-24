@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {
@@ -8,6 +9,7 @@ describe('HomePage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomePage],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomePage);
@@ -17,6 +19,13 @@ describe('HomePage', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render category teasers', () => {
+    const el: HTMLElement = fixture.nativeElement;
+    expect(el.textContent).toContain('Utility Tractors');
+    expect(el.textContent).toContain('Compact Tractors');
+    expect(el.textContent).toContain('Heavy Duty Tractors');
   });
 
   it('should render 3 product cards', () => {

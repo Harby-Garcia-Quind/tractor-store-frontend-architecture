@@ -17,8 +17,11 @@ describe('StoresPage', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render Stores Page title', () => {
+  it('should render stores', () => {
     const el: HTMLElement = fixture.nativeElement;
-    expect(el.querySelector('h1')?.textContent?.trim()).toBe('Stores Page');
+    expect(el.textContent).toContain('Main Street Tractors');
+    expect(el.textContent).toContain('Nashville');
+    expect(el.textContent).toContain('AgriPro Center');
   });
 });
+

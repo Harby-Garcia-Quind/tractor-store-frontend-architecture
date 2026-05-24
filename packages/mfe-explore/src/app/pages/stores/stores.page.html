@@ -1,10 +1,22 @@
 <main class="min-h-screen bg-app-bg text-app-text font-sans">
   <section class="mx-auto max-w-7xl px-page py-section">
-    <h1 class="text-4xl font-bold text-app-text">Stores Page</h1>
 
+    <h1 class="text-4xl font-bold text-app-text">Our Stores</h1>
     <p class="mt-4 max-w-2xl text-lg text-app-muted">
-      This page will list available tractor store locations once the store data
-      service is implemented.
+      Visit one of our locations to see our full lineup in person.
     </p>
+
+    <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      @for (store of stores; track store.id) {
+        <div
+          class="rounded-card border border-app-border bg-app-surface p-6 shadow-card"
+        >
+          <p class="font-bold text-app-text">{{ store.name }}</p>
+          <p class="mt-2 text-sm text-app-muted">{{ store.city }}</p>
+          <p class="text-sm text-app-muted">{{ store.country }}</p>
+        </div>
+      }
+    </div>
+
   </section>
 </main>

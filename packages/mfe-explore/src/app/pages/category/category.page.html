@@ -1,10 +1,44 @@
 <main class="min-h-screen bg-app-bg text-app-text font-sans">
   <section class="mx-auto max-w-7xl px-page py-section">
-    <h1 class="text-4xl font-bold text-app-text">Category Page</h1>
 
-    <p class="mt-4 max-w-2xl text-lg text-app-muted">
-      This page will list products filtered by category once the catalog store
-      and routing parameters are implemented.
-    </p>
+    <h1 class="text-4xl font-bold text-app-text">
+      Category: {{ categoryId() }}
+    </h1>
+
+    <!-- Filter chips -->
+    <div class="mt-6 flex flex-wrap gap-2" role="group" aria-label="Filter products">
+      @for (filter of filters; track filter.id) {
+        <button
+          type="button"
+          class="rounded-full border px-4 py-2 text-sm font-semibold transition-colors"
+          [class.border-primary]="activeFilter() === filter.id"
+          [class.text-primary]="activeFilter() === filter.id"
+          [class.border-app-border]="activeFilter() !== filter.id"
+          [class.text-app-text]="activeFilter() !== filter.id"
+          (click)="setFilter(filter.id)"
+          (keydown.enter)="setFilter(filter.id)"
+        >
+          {{ filter.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Selected indicator -->
+    @if (selectedProductId()) {
+      <p class="mt-6 text-sm text-app-muted">
+        Selected: <strong>{{ selectedProductId() }}</strong>
+      </p>
+    }
+
+    <!-- Product grid -->
+    <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      @for (product of products; track product.id) {
+        <ts-product-card
+          [product]="product"
+          (selected)="onProductSelected($event)"
+        />
+      }
+    </div>
+
   </section>
 </main>
