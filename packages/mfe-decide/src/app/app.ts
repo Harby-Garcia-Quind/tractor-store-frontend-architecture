@@ -1,14 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
-import { TsButton } from 'ts-design-system';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [NxWelcome, RouterModule, TsButton],
-  selector: 'app-root',
+  imports: [RouterOutlet],
+  selector: 'decide-app',
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-  protected title = 'mfe-decide';
-}
+export class App {}

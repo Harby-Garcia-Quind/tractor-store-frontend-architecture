@@ -1,0 +1,28 @@
+<button
+  class="ts-variant-option"
+  [class.ts-variant-option--selected]="selected()"
+  type="button"
+  (click)="onSelect()"
+>
+  <div class="ts-variant-option__header">
+    <span class="ts-variant-option__name">{{ variant().name }}</span>
+    <span class="ts-variant-option__sku">{{ variant().sku }}</span>
+  </div>
+
+  <div class="ts-variant-option__details">
+    <span>{{ variant().color }}</span>
+    <span>&middot;</span>
+    <span>{{ variant().engine }}</span>
+  </div>
+
+  <div class="ts-variant-option__price">
+    {{ formatMoney(variant().price) }}
+  </div>
+
+  <div
+    class="ts-variant-option__stock"
+    [class.ts-variant-option__stock--available]="inStock"
+  >
+    {{ stockLabel }}
+  </div>
+</button>

@@ -1,35 +1,25 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { App } from './app';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
-  it('should render title', () => {
+  it('should create', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Team Explore');
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render 3 product cards', () => {
+  it('should contain a router-outlet', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('ts-product-card').length).toBe(3);
-  });
-
-  it('should update selectedProductId when a product is selected', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const component = fixture.componentInstance;
-
-    component.onProductSelected('prod-2');
-    fixture.detectChanges();
-
-    expect(component.selectedProductId()).toBe('prod-2');
+    const el: HTMLElement = fixture.nativeElement;
+    expect(el.querySelector('router-outlet')).not.toBeNull();
   });
 });
