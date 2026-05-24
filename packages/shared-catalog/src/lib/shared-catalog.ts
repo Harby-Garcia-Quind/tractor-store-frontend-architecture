@@ -1,3 +1,2 @@
-export function sharedCatalog(): string {
-  return 'shared-catalog';
-}
+// This file is intentionally left as an empty module.
+// Domain contracts are exported from src/index.ts.
