@@ -24,23 +24,40 @@ export default [
                 'scope:checkout',
                 'scope:shared',
                 'scope:design-system',
+                'scope:tokens',
               ],
             },
             {
               sourceTag: 'scope:explore',
-              onlyDependOnLibsWithTags: ['scope:shared', 'scope:design-system'],
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'scope:design-system',
+                'scope:tokens',
+              ],
             },
             {
               sourceTag: 'scope:decide',
-              onlyDependOnLibsWithTags: ['scope:shared', 'scope:design-system'],
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'scope:design-system',
+                'scope:tokens',
+              ],
             },
             {
               sourceTag: 'scope:checkout',
-              onlyDependOnLibsWithTags: ['scope:shared', 'scope:design-system'],
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'scope:design-system',
+                'scope:tokens',
+              ],
             },
             {
               sourceTag: 'scope:design-system',
-              onlyDependOnLibsWithTags: ['scope:shared'],
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:tokens'],
+            },
+            {
+              sourceTag: 'scope:tokens',
+              onlyDependOnLibsWithTags: ['scope:tokens'],
             },
             {
               sourceTag: 'scope:shared',

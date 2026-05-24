@@ -1,0 +1,8 @@
+<button
+  class="ts-button"
+  [class.ts-button--secondary]="variant() === 'secondary'"
+  [type]="type()"
+  [disabled]="disabled()"
+>
+  <ng-content />
+</button>

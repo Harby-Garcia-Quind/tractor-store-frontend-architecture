@@ -1,0 +1,20 @@
+:root {
+  /* Button */
+  --button-bg: var(--color-primary);
+  --button-bg-hover: var(--color-primary-hover);
+  --button-color: var(--palette-neutral-0);
+  --button-radius: var(--radius-md);
+  --button-padding-x: var(--space-4);
+  --button-padding-y: var(--space-2);
+
+  /* Card */
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
+  --card-radius: var(--radius-card);
+  --card-shadow: var(--shadow-card);
+
+  /* Cart counter */
+  --cart-counter-bg: var(--color-primary);
+  --cart-counter-color: var(--palette-neutral-0);
+  --cart-counter-radius: var(--radius-pill);
+}

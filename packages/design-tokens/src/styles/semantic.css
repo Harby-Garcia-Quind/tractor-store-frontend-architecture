@@ -1,0 +1,18 @@
+:root {
+  --color-primary: var(--palette-green-700);
+  --color-primary-hover: var(--palette-green-900);
+  --color-accent: var(--palette-yellow-400);
+
+  --color-background: var(--palette-neutral-50);
+  --color-surface: var(--palette-neutral-0);
+  --color-text: var(--palette-neutral-900);
+  --color-muted: var(--palette-neutral-600);
+  --color-border: var(--palette-neutral-300);
+
+  --font-body: var(--font-family-sans);
+
+  --spacing-page: var(--space-8);
+  --spacing-section: var(--space-12);
+
+  --radius-card: var(--radius-lg);
+}

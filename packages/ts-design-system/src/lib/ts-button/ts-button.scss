@@ -1,0 +1,45 @@
+:host {
+  display: inline-block;
+}
+
+.ts-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.5rem;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border: 1px solid transparent;
+  border-radius: var(--button-radius);
+  background: var(--button-bg);
+  color: var(--button-color);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+
+  &:hover:not(:disabled) {
+    background: var(--button-bg-hover);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  &--secondary {
+    border-color: var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    &:hover:not(:disabled) {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: var(--color-surface);
+    }
+  }
+}

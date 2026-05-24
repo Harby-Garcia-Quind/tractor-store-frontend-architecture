@@ -10,6 +10,7 @@
     "paths": {
       "@tractor/domain": ["packages/playground/domain.models.ts"],
       "@tractor/domain/*": ["packages/playground/domain/*"],
+      "design-tokens": ["packages/design-tokens/src/index.ts"],
       "shared-catalog": ["packages/shared-catalog/src/index.ts"],
       "ts-design-system": ["packages/ts-design-system/src/index.ts"]
     }
