@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import type { Product, Variant, VariantId } from 'shared-catalog';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs';
+import type { Variant, VariantId } from 'shared-catalog';
 import { TsButton, TsVariantOption } from 'ts-design-system';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'decide-product-page',
@@ -10,59 +14,28 @@ import { TsButton, TsVariantOption } from 'ts-design-system';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPage {
-  readonly product: Product = {
-    id: 'tractor-001',
-    name: 'Big Tractor 5000',
-    brand: 'Tractor Corp',
-    category: 'Utility',
-    description: 'A reliable tractor for demanding field work.',
-    basePrice: { amount: 25000, currency: 'USD' },
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&q=80',
-        alt: 'Big Tractor 5000',
-      },
-    ],
-    availableStores: ['store-1', 'store-2'],
-  };
+  private readonly route = inject(ActivatedRoute);
+  private readonly productService = inject(ProductService);
 
-  readonly variants: Variant[] = [
-    {
-      id: 'var-red',
-      productId: 'tractor-001',
-      name: 'Big Tractor 5000 — Red Diesel',
-      sku: 'FM80-RED-DSL',
-      color: 'Red',
-      engine: '80HP Diesel',
-      price: { amount: 34999, currency: 'USD' },
-      stock: 3,
-    },
-    {
-      id: 'var-blue',
-      productId: 'tractor-001',
-      name: 'Big Tractor 5000 — Blue Diesel',
-      sku: 'FM80-BLU-DSL',
-      color: 'Blue',
-      engine: '80HP Diesel',
-      price: { amount: 35499, currency: 'USD' },
-      stock: 1,
-    },
-    {
-      id: 'var-black',
-      productId: 'tractor-001',
-      name: 'Big Tractor 5000 — Black Hybrid',
-      sku: 'FM80-BLK-HYB',
-      color: 'Black',
-      engine: '80HP Hybrid',
-      price: { amount: 38999, currency: 'USD' },
-      stock: 0,
-    },
-  ];
+  private readonly productId$ = this.route.paramMap.pipe(
+    map((p) => p.get('id') ?? 'tractor-001'),
+  );
+
+  readonly product = toSignal(
+    this.productId$.pipe(switchMap((id) => this.productService.getProductById(id))),
+  );
+
+  readonly variants = toSignal(
+    this.productId$.pipe(
+      switchMap((id) => this.productService.getVariantsByProductId(id)),
+    ),
+    { initialValue: [] as Variant[] },
+  );
 
   selectedVariantId = signal<VariantId | null>(null);
 
   get heroAlt(): string {
-    return this.product.images[0].alt;
+    return this.product()?.images[0]?.alt ?? '';
   }
 
   onVariantSelected(id: VariantId): void {

@@ -2,6 +2,7 @@
   <section class="mx-auto max-w-4xl px-page py-section">
     <h1 class="mb-6 text-3xl font-bold text-app-text">Your Cart</h1>
 
+    @if (cart(); as c) {
     <div
       class="overflow-hidden rounded-card border border-app-border bg-app-surface shadow-card"
     >
@@ -23,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (item of cart.items; track item.id) {
+          @for (item of c.items; track item.id) {
             <tr class="border-b border-app-border last:border-0">
               <td class="px-6 py-4">
                 <p class="font-semibold text-app-text">{{ item.name }}</p>
@@ -52,7 +53,7 @@
             <td
               class="px-6 py-4 text-right text-xl font-bold text-primary"
             >
-              {{ formatMoney(cart.subtotal) }}
+              {{ formatMoney(c.subtotal) }}
             </td>
           </tr>
         </tfoot>
@@ -67,5 +68,6 @@
         Go to checkout
       </ts-button>
     </div>
+    }
   </section>
 </main>

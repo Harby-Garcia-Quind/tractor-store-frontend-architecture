@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import type { Store } from 'shared-catalog';
+import { CatalogService } from '../../services/catalog.service';
 
 @Component({
   selector: 'explore-stores',
@@ -9,31 +11,10 @@ import type { Store } from 'shared-catalog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StoresPage {
-  readonly stores: Store[] = [
-    {
-      id: 'store-1',
-      name: 'Main Street Tractors',
-      city: 'Nashville',
-      country: 'USA',
-    },
-    {
-      id: 'store-2',
-      name: 'AgriPro Center',
-      city: 'Columbus',
-      country: 'USA',
-    },
-    {
-      id: 'store-3',
-      name: 'Midwest Equipment',
-      city: 'Des Moines',
-      country: 'USA',
-    },
-    {
-      id: 'store-4',
-      name: 'Southern Fields',
-      city: 'Birmingham',
-      country: 'USA',
-    },
-  ];
+  private readonly catalog = inject(CatalogService);
+
+  readonly stores = toSignal(this.catalog.getStores(), {
+    initialValue: [] as Store[],
+  });
 }
 

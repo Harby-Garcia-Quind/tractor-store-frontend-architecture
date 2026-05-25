@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TsButton } from 'ts-design-system';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'checkout-checkout-page',
@@ -23,6 +24,7 @@ import { TsButton } from 'ts-design-system';
 export class CheckoutPage {
   private readonly router = inject(Router);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly cartService = inject(CartService);
   private submitted = false;
 
   form = new FormGroup({
@@ -54,8 +56,10 @@ export class CheckoutPage {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.submitted = true;
-      this.router.navigate(['/thanks']);
+      this.cartService.submitCheckout(this.form.getRawValue()).subscribe(() => {
+        this.submitted = true;
+        this.router.navigate(['/thanks']);
+      });
     } else {
       this.form.markAllAsTouched();
       this.cdr.markForCheck();

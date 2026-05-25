@@ -1,56 +1,58 @@
 <main class="min-h-screen bg-app-bg text-app-text font-sans">
   <section class="mx-auto max-w-7xl px-page py-section">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    @if (product(); as prod) {
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 
-      <!-- Product image -->
-      <div>
-        <img
-          class="w-full rounded-card object-cover"
-          [src]="product.images[0].url"
-          [alt]="heroAlt"
-        />
-      </div>
-
-      <!-- Variant selector -->
-      <div class="flex flex-col gap-6">
+        <!-- Product image -->
         <div>
-          <p class="text-sm font-bold uppercase tracking-widest text-primary">
-            {{ product.brand }}
-          </p>
-          <h1 class="mt-1 text-4xl font-bold text-app-text">
-            {{ product.name }}
-          </h1>
-          <p class="mt-1 text-sm text-app-muted">{{ product.category }}</p>
-          <p class="mt-4 text-base leading-7 text-app-text">
-            {{ product.description }}
-          </p>
+          <img
+            class="w-full rounded-card object-cover"
+            [src]="prod.images[0].url"
+            [alt]="heroAlt"
+          />
         </div>
 
-        <div>
-          <h2 class="mb-3 text-lg font-bold text-app-text">
-            Select a Variant
-          </h2>
-          <div class="flex flex-col gap-3">
-            @for (variant of variants; track variant.id) {
-              <ts-variant-option
-                [variant]="variant"
-                [selected]="selectedVariantId() === variant.id"
-                (variantSelected)="onVariantSelected($event)"
-              />
-            }
+        <!-- Variant selector -->
+        <div class="flex flex-col gap-6">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-widest text-primary">
+              {{ prod.brand }}
+            </p>
+            <h1 class="mt-1 text-4xl font-bold text-app-text">
+              {{ prod.name }}
+            </h1>
+            <p class="mt-1 text-sm text-app-muted">{{ prod.category }}</p>
+            <p class="mt-4 text-base leading-7 text-app-text">
+              {{ prod.description }}
+            </p>
           </div>
+
+          <div>
+            <h2 class="mb-3 text-lg font-bold text-app-text">
+              Select a Variant
+            </h2>
+            <div class="flex flex-col gap-3">
+              @for (variant of variants(); track variant.id) {
+                <ts-variant-option
+                  [variant]="variant"
+                  [selected]="selectedVariantId() === variant.id"
+                  (variantSelected)="onVariantSelected($event)"
+                />
+              }
+            </div>
+          </div>
+
+          @if (selectedVariantId()) {
+            <p class="text-sm text-app-muted">
+              Selected:
+              <strong class="text-app-text">{{ selectedVariantId() }}</strong>
+            </p>
+          }
+
+          <ts-button [disabled]="true">Add to cart</ts-button>
         </div>
 
-        @if (selectedVariantId()) {
-          <p class="text-sm text-app-muted">
-            Selected:
-            <strong class="text-app-text">{{ selectedVariantId() }}</strong>
-          </p>
-        }
-
-        <ts-button [disabled]="true">Add to cart</ts-button>
       </div>
-
-    </div>
+    }
   </section>
 </main>

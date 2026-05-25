@@ -7,7 +7,7 @@
     </p>
 
     <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      @for (store of stores; track store.id) {
+      @for (store of stores(); track store.id) {
         <div
           class="rounded-card border border-app-border bg-app-surface p-6 shadow-card"
         >

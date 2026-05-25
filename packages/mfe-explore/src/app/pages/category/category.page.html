@@ -32,7 +32,7 @@
 
     <!-- Product grid -->
     <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      @for (product of products; track product.id) {
+      @for (product of products(); track product.id) {
         <ts-product-card
           [product]="product"
           (selected)="onProductSelected($event)"

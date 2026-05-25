@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import type { Cart, LineItem, Money } from 'shared-catalog';
+import type { LineItem, Money } from 'shared-catalog';
 import { TsButton } from 'ts-design-system';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'checkout-cart-page',
@@ -12,31 +14,9 @@ import { TsButton } from 'ts-design-system';
 })
 export class CartPage {
   private readonly router = inject(Router);
+  private readonly cartService = inject(CartService);
 
-  readonly cart: Cart = {
-    id: 'cart-001',
-    items: [
-      {
-        id: 'item-1',
-        variantId: 'var-red',
-        productId: 'tractor-001',
-        name: 'Big Tractor 5000 — Red Diesel',
-        sku: 'BT5000-RED-DSL',
-        price: { amount: 25000, currency: 'USD' },
-        quantity: 1,
-      },
-      {
-        id: 'item-2',
-        variantId: 'var-blue',
-        productId: 'tractor-001',
-        name: 'Big Tractor 5000 — Blue Diesel',
-        sku: 'BT5000-BLU-DSL',
-        price: { amount: 26500, currency: 'USD' },
-        quantity: 2,
-      },
-    ],
-    subtotal: { amount: 78000, currency: 'USD' },
-  };
+  readonly cart = toSignal(this.cartService.getCart());
 
   lineSubtotal(item: LineItem): string {
     return this.formatMoney({

@@ -1,15 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
+import { CartService } from '../../services/cart.service';
 import { CheckoutPage } from './checkout.page';
 
 describe('CheckoutPage', () => {
   let component: CheckoutPage;
   let fixture: ComponentFixture<CheckoutPage>;
+  let submitCheckoutSpy: jest.Mock;
 
   beforeEach(async () => {
+    submitCheckoutSpy = jest.fn().mockReturnValue(of({ orderId: 'order-001' }));
+
     await TestBed.configureTestingModule({
       imports: [CheckoutPage],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        { provide: CartService, useValue: { submitCheckout: submitCheckoutSpy } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CheckoutPage);
@@ -43,5 +51,17 @@ describe('CheckoutPage', () => {
 
   it('should not report isFormDirtyAndNotSubmitted when form is pristine', () => {
     expect(component.isFormDirtyAndNotSubmitted).toBe(false);
+  });
+
+  it('should call submitCheckout on valid submit', () => {
+    component.form.setValue({
+      fullName: 'John Doe',
+      email: 'john@example.com',
+      address: '123 Main St',
+      city: 'Springfield',
+      country: 'USA',
+    });
+    component.onSubmit();
+    expect(submitCheckoutSpy).toHaveBeenCalled();
   });
 });

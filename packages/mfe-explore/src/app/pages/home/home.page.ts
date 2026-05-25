@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import type { ProductId, ProductSummary } from 'shared-catalog';
 import { TsProductCard } from 'ts-design-system';
+import { CatalogService } from '../../services/catalog.service';
 
 interface CategoryTeaser {
   id: string;
@@ -18,6 +20,8 @@ interface CategoryTeaser {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
+  private readonly catalog = inject(CatalogService);
+
   readonly categories: CategoryTeaser[] = [
     {
       id: 'utility',
@@ -42,35 +46,9 @@ export class HomePage {
     },
   ];
 
-  readonly products: ProductSummary[] = [
-    {
-      id: 'prod-1',
-      name: 'PowerTrac 50',
-      brand: 'TractorCo',
-      category: 'Compact Tractors',
-      basePrice: { amount: 18500, currency: 'USD' },
-      primaryImageUrl:
-        'https://images.unsplash.com/photo-1567416661576-659f9e5c4d43?w=600&q=80',
-    },
-    {
-      id: 'prod-2',
-      name: 'FieldMaster 80',
-      brand: 'AgriForce',
-      category: 'Utility Tractors',
-      basePrice: { amount: 34999, currency: 'USD' },
-      primaryImageUrl:
-        'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=600&q=80',
-    },
-    {
-      id: 'prod-3',
-      name: 'HarvestKing 120',
-      brand: 'GreenField',
-      category: 'Row Crop Tractors',
-      basePrice: { amount: 62000, currency: 'USD' },
-      primaryImageUrl:
-        'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&q=80',
-    },
-  ];
+  readonly products = toSignal(this.catalog.getHomeProducts(), {
+    initialValue: [] as ProductSummary[],
+  });
 
   selectedProductId = signal<ProductId | null>(null);
 
