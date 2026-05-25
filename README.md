@@ -45,3 +45,15 @@ Proyecto:
 
 ```txt
 packages/mfe-explore
+packages/mfe-decide
+packages/mfe-checkout
+
+
+Monorepo Nx funcionando.
+Tres MFEs aislados funcionando.
+Shell funcionando.
+Design Tokens funcionando.
+Design System funcionando.
+Storybook configurado.
+Tests base funcionando.
+Arquitectura preparada para Module Federation.
