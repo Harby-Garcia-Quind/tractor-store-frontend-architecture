@@ -1,0 +1,58 @@
+<main class="flex flex-col gap-16 px-page py-section max-w-7xl mx-auto">
+  <!-- Hero -->
+  <section class="flex flex-col items-center text-center gap-6">
+    <p class="text-sm font-bold uppercase tracking-widest text-primary">
+      The Tractor Store
+    </p>
+    <h1 class="text-5xl font-bold leading-none md:text-7xl">
+      Your one-stop tractor shop
+    </h1>
+    <p class="max-w-2xl text-lg leading-8 text-app-muted">
+      Browse our full catalog, configure your perfect tractor, and checkout — all in one place.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 mt-4">
+      <a routerLink="/explore">
+        <ts-button variant="primary">Explore Tractors</ts-button>
+      </a>
+      <a routerLink="/product/tractor-001">
+        <ts-button variant="secondary">View a Product</ts-button>
+      </a>
+      <a routerLink="/cart">
+        <ts-button variant="secondary">Go to Cart</ts-button>
+      </a>
+    </div>
+  </section>
+
+  <!-- Domain cards -->
+  <section class="grid gap-8 sm:grid-cols-3">
+    <div class="rounded-card border border-app-border bg-app-surface p-section shadow-card">
+      <p class="text-2xl font-bold text-primary mb-2">Explore</p>
+      <p class="text-app-muted">
+        Browse categories, discover products, find your nearest store and get personalised recommendations.
+      </p>
+      <a routerLink="/explore" class="mt-4 inline-block">
+        <ts-button variant="secondary">Go to Explore</ts-button>
+      </a>
+    </div>
+
+    <div class="rounded-card border border-app-border bg-app-surface p-section shadow-card">
+      <p class="text-2xl font-bold text-primary mb-2">Decide</p>
+      <p class="text-app-muted">
+        View detailed product specs, choose your variant, and add to cart with confidence.
+      </p>
+      <a routerLink="/product/tractor-001" class="mt-4 inline-block">
+        <ts-button variant="secondary">View a Product</ts-button>
+      </a>
+    </div>
+
+    <div class="rounded-card border border-app-border bg-app-surface p-section shadow-card">
+      <p class="text-2xl font-bold text-primary mb-2">Checkout</p>
+      <p class="text-app-muted">
+        Review your cart, fill in delivery details and complete your purchase securely.
+      </p>
+      <a routerLink="/cart" class="mt-4 inline-block">
+        <ts-button variant="secondary">Go to Cart</ts-button>
+      </a>
+    </div>
+  </section>
+</main>

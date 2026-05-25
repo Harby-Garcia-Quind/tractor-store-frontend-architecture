@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { TsButton } from 'ts-design-system';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [RouterModule, TsButton],
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
