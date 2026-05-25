@@ -2,6 +2,9 @@ import nx from '@nx/eslint-plugin';
 import baseConfig from '../../eslint.config.mjs';
 
 export default [
+  {
+    ignores: ['**/storybook-static/**', 'storybook-static/**'],
+  },
   ...baseConfig,
   ...nx.configs['flat/angular'],
   ...nx.configs['flat/angular-template'],
@@ -30,5 +33,11 @@ export default [
     files: ['**/*.html'],
     // Override or add rules here
     rules: {},
+  },
+  {
+    files: ['.storybook/**/*'],
+    rules: {
+      '@nx/enforce-module-boundaries': 'off',
+    },
   },
 ];

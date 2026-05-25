@@ -8,3 +8,5 @@ node_modules
 .angular
 dist
 dist/
+
+storybook-static

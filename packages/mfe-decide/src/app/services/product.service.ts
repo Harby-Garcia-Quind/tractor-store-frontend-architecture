@@ -57,11 +57,12 @@ export class ProductService {
   private readonly apiUrl = inject(DECIDE_API_URL);
 
   getProductById(_id: ProductId): Observable<Product> {
-    void this.apiUrl;
+    console.log('Fetching product by ID:', _id, 'from API:', this.apiUrl);
     return of(MOCK_PRODUCT);
   }
 
   getVariantsByProductId(_productId: ProductId): Observable<Variant[]> {
+    console.log('Fetching variants for product ID:', _productId);
     return of(MOCK_VARIANTS);
   }
 }

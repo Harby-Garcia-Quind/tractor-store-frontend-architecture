@@ -33,11 +33,12 @@ export class CartService {
   private readonly apiUrl = inject(CHECKOUT_API_URL);
 
   getCart(): Observable<Cart> {
-    void this.apiUrl;
+    console.log('Fetching cart from API:', this.apiUrl);
     return of(MOCK_CART);
   }
 
   submitCheckout(_formValue: unknown): Observable<{ orderId: string }> {
+    console.log('Submitting checkout with form value:', _formValue);
     return of({ orderId: 'order-001' });
   }
 }

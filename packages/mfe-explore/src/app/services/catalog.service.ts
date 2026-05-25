@@ -75,11 +75,12 @@ export class CatalogService {
   private readonly apiUrl = inject(EXPLORE_API_URL);
 
   getHomeProducts(): Observable<ProductSummary[]> {
-    void this.apiUrl;
+    console.log('Fetching home products from API:', this.apiUrl);
     return of(HOME_PRODUCTS);
   }
 
   getCategoryProducts(_categoryId: string): Observable<ProductSummary[]> {
+    console.log('Fetching products for category:', _categoryId);
     return of(CATEGORY_PRODUCTS);
   }
 

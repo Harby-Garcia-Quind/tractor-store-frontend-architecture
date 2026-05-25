@@ -16,6 +16,49 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "packages/ts-design-system/.storybook",
+        "browserTarget": "ts-design-system:build-storybook",
+        "tsConfig": "packages/ts-design-system/.storybook/tsconfig.json",
+        "styles": [
+          "packages/design-tokens/src/styles/primitives.css",
+          "packages/design-tokens/src/styles/semantic.css",
+          "packages/design-tokens/src/styles/components.css"
+        ],
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "parallelism": true
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ts-design-system",
+        "configDir": "packages/ts-design-system/.storybook",
+        "browserTarget": "ts-design-system:build-storybook",
+        "tsConfig": "packages/ts-design-system/.storybook/tsconfig.json",
+        "styles": [
+          "packages/design-tokens/src/styles/primitives.css",
+          "packages/design-tokens/src/styles/semantic.css",
+          "packages/design-tokens/src/styles/components.css"
+        ],
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "parallelism": true
     }
   }
 }

@@ -7,5 +7,11 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["packages/playground/**/*.ts"],
-  "extends": "./tsconfig.base.json"
+  "extends": "./tsconfig.base.json",
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node10"
+    }
+  }
 }

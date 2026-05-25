@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { productResolver } from './resolvers/product.resolver';
 
 export const appRoutes: Route[] = [
   {
@@ -8,6 +9,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'product/:id',
+    resolve: { product: productResolver },
     loadComponent: () =>
       import('./pages/product/product.page').then((m) => m.ProductPage),
   },

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs';
-import type { Variant, VariantId } from 'shared-catalog';
+import type { Product, Variant, VariantId } from 'shared-catalog';
 import { TsButton, TsVariantOption } from 'ts-design-system';
 import { ProductService } from '../../services/product.service';
 
@@ -17,16 +17,13 @@ export class ProductPage {
   private readonly route = inject(ActivatedRoute);
   private readonly productService = inject(ProductService);
 
-  private readonly productId$ = this.route.paramMap.pipe(
-    map((p) => p.get('id') ?? 'tractor-001'),
-  );
-
   readonly product = toSignal(
-    this.productId$.pipe(switchMap((id) => this.productService.getProductById(id))),
+    this.route.data.pipe(map((d) => d['product'] as Product)),
   );
 
   readonly variants = toSignal(
-    this.productId$.pipe(
+    this.route.paramMap.pipe(
+      map((p) => p.get('id') ?? 'tractor-001'),
       switchMap((id) => this.productService.getVariantsByProductId(id)),
     ),
     { initialValue: [] as Variant[] },
